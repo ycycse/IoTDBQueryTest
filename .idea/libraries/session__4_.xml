@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="session (4)">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/iotdb-session-0.14.0-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

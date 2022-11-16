@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="tsFile">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/tsfile.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
