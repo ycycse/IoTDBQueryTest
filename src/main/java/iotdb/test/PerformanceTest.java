@@ -157,7 +157,6 @@ public class PerformanceTest {
 //        }
 //        anotherSession.close();
 //    }
-
     public static void main(String[] args)
             throws IoTDBConnectionException, StatementExecutionException, SQLException, ClassNotFoundException, InterruptedException {
 //        Thread.sleep(50000);

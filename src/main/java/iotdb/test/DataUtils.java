@@ -57,32 +57,31 @@ public class DataUtils {
         anotherSession.open();
         Random random = new Random();
 
-        deviceNum = dataNums.length;
+        deviceNum = 1;
 //        String device_id = Config.DEVICE_ID + (char)(random.nextInt(2) % 2 == 0 ? 65 : 97+random.nextInt(26))+(char)(random.nextInt(2) % 2 == 0 ? 65 : 97+random.nextInt(26))+(char)(random.nextInt(2) % 2 == 0 ? 65 : 97+random.nextInt(26))+(char)(random.nextInt(2) % 2 == 0 ? 65 : 97+random.nextInt(26))+(char)(random.nextInt(2) % 2 == 0 ? 65 : 97+random.nextInt(26))+(char)(random.nextInt(2) % 2 == 0 ? 65 : 97+random.nextInt(26))+(char)(random.nextInt(2) % 2 == 0 ? 65 : 97+random.nextInt(26))+(char)(random.nextInt(2) % 2 == 0 ? 65 : 97+random.nextInt(26))+(char)(random.nextInt(2) % 2 == 0 ? 65 : 97+random.nextInt(26))+(char)(random.nextInt(2) % 2 == 0 ? 65 : 97+random.nextInt(26));
         for(int i=0;i<deviceNum;i++){
             long timestamp = System.currentTimeMillis();
 //            String device_id = Config.DEVICE_ID + place[i];
-            String device_id = "root.deserializationTest.thresholdTest.d"+"_"+i;
+            String device_id = "root.deserializationTest.node";
             List<MeasurementSchema> schemaList = new ArrayList<>();
             for(int j=0;j<timeseriesNum;j++){
                 schemaList.add(new MeasurementSchema("s_"+j, TSDataType.INT32));
-//                schemaList.add(new MeasurementSchema("temperature", TSDataType.DOUBLE));
             }
-            Tablet tablet = new Tablet(device_id, schemaList, 500);
+            Tablet tablet = new Tablet(device_id, schemaList, 400);
 
-            for (int row = 0; row < dataNums[i]; row++) {
+            for (int row = 0; row < dataNum; row++) {
                 int r = tablet.rowSize++;
 
                 tablet.addTimestamp(r, timestamp);
                 for(int k=0;k<timeseriesNum;k++){
                     tablet.addValue(schemaList.get(k).getMeasurementId(), r, getValue(Type.INT32));
-//                    tablet.addValue(schemaList.get(1+2*k).getMeasurementId(), r, getValue(Type.DOUBLE));
                 }
 
 
                 if (tablet.rowSize == tablet.getMaxRowNumber()) {
                     anotherSession.insertTablet(tablet);
                     tablet.reset();
+                    anotherSession.executeNonQueryStatement("flush");
                 }
                 timestamp++;
             }
@@ -90,6 +89,7 @@ public class DataUtils {
             if (tablet.rowSize != 0) {
                 anotherSession.insertTablet(tablet);
                 tablet.reset();
+                anotherSession.executeQueryStatement("flush");
             }
 
         }
