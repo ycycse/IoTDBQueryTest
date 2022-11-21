@@ -57,12 +57,10 @@ public class DataUtils {
         anotherSession.open();
         Random random = new Random();
 
-        deviceNum = 1;
 //        String device_id = Config.DEVICE_ID + (char)(random.nextInt(2) % 2 == 0 ? 65 : 97+random.nextInt(26))+(char)(random.nextInt(2) % 2 == 0 ? 65 : 97+random.nextInt(26))+(char)(random.nextInt(2) % 2 == 0 ? 65 : 97+random.nextInt(26))+(char)(random.nextInt(2) % 2 == 0 ? 65 : 97+random.nextInt(26))+(char)(random.nextInt(2) % 2 == 0 ? 65 : 97+random.nextInt(26))+(char)(random.nextInt(2) % 2 == 0 ? 65 : 97+random.nextInt(26))+(char)(random.nextInt(2) % 2 == 0 ? 65 : 97+random.nextInt(26))+(char)(random.nextInt(2) % 2 == 0 ? 65 : 97+random.nextInt(26))+(char)(random.nextInt(2) % 2 == 0 ? 65 : 97+random.nextInt(26))+(char)(random.nextInt(2) % 2 == 0 ? 65 : 97+random.nextInt(26));
         for(int i=0;i<deviceNum;i++){
             long timestamp = System.currentTimeMillis();
-//            String device_id = Config.DEVICE_ID + place[i];
-            String device_id = "root.deserializationTest.node";
+            String device_id = Config.DEVICE_ID + place[i];
             List<MeasurementSchema> schemaList = new ArrayList<>();
             for(int j=0;j<timeseriesNum;j++){
                 schemaList.add(new MeasurementSchema("s_"+j, TSDataType.INT32));
@@ -93,7 +91,7 @@ public class DataUtils {
             }
 
         }
-        anotherSession.close();;
+        anotherSession.close();
     }
     static Object getValue(Type type) {
         switch (type) {
