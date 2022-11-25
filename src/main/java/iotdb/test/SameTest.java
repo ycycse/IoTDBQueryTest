@@ -23,6 +23,5 @@ public class SameTest {
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
             System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
         }
-//        System.out.println(s.toString());
     }
 }

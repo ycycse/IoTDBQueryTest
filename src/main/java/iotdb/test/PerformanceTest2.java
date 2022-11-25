@@ -1,12 +1,12 @@
 package iotdb.test;
 
+import iotdb.test.Utils.Config;
 import org.apache.iotdb.jdbc.IoTDBStatement;
 import org.apache.iotdb.rpc.IoTDBConnectionException;
 import org.apache.iotdb.rpc.StatementExecutionException;
 import org.apache.iotdb.session.OldSessionDataSet;
 import org.apache.iotdb.session.Session;
 import org.apache.iotdb.session.SessionDataSet;
-import org.apache.iotdb.session.util.Version;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,7 +17,7 @@ import java.sql.SQLException;
 public class PerformanceTest2 {
 
     static double JDBCTest1(String sql) throws ClassNotFoundException, SQLException {
-        try(Connection iotDBConnection = DriverManager.getConnection("jdbc:iotdb://"+Config.IP+":"+Config.PORT+"/",Config.USERNAME,Config.PASSWORD);
+        try(Connection iotDBConnection = DriverManager.getConnection("jdbc:iotdb://"+ Config.IP+":"+Config.PORT+"/",Config.USERNAME,Config.PASSWORD);
             IoTDBStatement statement = (IoTDBStatement) iotDBConnection.createStatement()){
             statement.setFetchSize(5000);
             long Start = System.nanoTime();
