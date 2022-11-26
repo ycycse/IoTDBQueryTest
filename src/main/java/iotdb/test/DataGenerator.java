@@ -22,9 +22,9 @@ public class DataGenerator {
     }
 
     public static void main(String[] args) {
-        addDataViaSession("127.0.0.1",6667,"root.test.sg");
-        addDataViaSession("127.0.0.1",6667,"root.test.sg2");
-        addDataViaSession("127.0.0.1",6669,"root.test.sg3");
-        addDataViaSession("127.0.0.1",6671,"root.test.sg4");
+        addDataViaSession("127.0.0.1",6667,"root.test2.sg");
+        addDataViaSession("127.0.0.1",6667,"root.test2.sg2");
+        addDataViaSession("127.0.0.1",6669,"root.test2.sg3");
+        addDataViaSession("127.0.0.1",6671,"root.test2.sg4");
     }
 }

@@ -43,7 +43,8 @@ public class DataUtils {
     };
     private static void insertData(Session session,String devicePath,int sensorNum,int dataNum) throws IoTDBConnectionException, StatementExecutionException {
         logger.info("inserting data to "+devicePath+" in "+Config.IP+":"+Config.PORT);
-        long timestamp = 12414234343L;
+        long timestamp = 1668960000L;
+        int num = 0;
         List<MeasurementSchema> schemaList = new ArrayList<>();
         for(int j=0;j<sensorNum;j++){
             schemaList.add(new MeasurementSchema("s_"+j, TSDataType.INT32));
@@ -55,7 +56,8 @@ public class DataUtils {
 
             tablet.addTimestamp(r, timestamp);
             for(int k=0;k<sensorNum;k++){
-                tablet.addValue(schemaList.get(k).getMeasurementId(), r, getValue(Type.INT32));
+                tablet.addValue(schemaList.get(k).getMeasurementId(), r, num);
+                num++;
             }
 
 
