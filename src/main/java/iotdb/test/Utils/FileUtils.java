@@ -24,7 +24,7 @@ public class FileUtils {
         input
             .append(key)
             .append(":")
-            .append(Arrays.toString((Object[]) value))
+            .append(value)
             .append(lineSeparator);
       }
       fw.write(String.valueOf(input));
@@ -37,5 +37,21 @@ public class FileUtils {
   public static <K, V> void writeMapToFile(Map<K, V> map) {
     String fileName = "./" + map.getClass().getSimpleName() + ".txt";
     writeMapToFile(fileName, map);
+  }
+
+  public static void writeLongToFile(long value, String fileName) {
+    try (FileWriter fw = new FileWriter(fileName, true)) {
+      fw.write(String.valueOf(value));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void writeDoubleToFile(double value, String fileName) {
+    try (FileWriter fw = new FileWriter(fileName, true)) {
+      fw.write(String.valueOf(value));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }
